@@ -280,7 +280,8 @@ struct HDS {
     // update proxies for triangles with one corner in N
     for (Tri* T : N->tris) refreshTriProxies(*T);
 
-    // add subtris into Active List (skip degenerates)
+    // refresh proxies for subtris too, then add (skip degenerates inside addTri)
+    for (Tri* T : N->subtris) refreshTriProxies(*T);
     for (Tri* T : N->subtris) addTri(T);
   }
 
